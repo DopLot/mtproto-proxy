@@ -1,3 +1,3 @@
 git clone https://github.com/alexbers/mtprotoproxy
-cd mtproxy-docker
+cd mtprotoproxy
 git push origin main
