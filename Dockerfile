@@ -1,10 +1,10 @@
-FROM ubuntu:22.04
+FROM alpine:3.18
 
-RUN apt-get update && apt-get install -y wget curl && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ca-certificates curl
 
-# Скачиваем MTProto прямо из исходников Telegram
-RUN wget -q -O /usr/local/bin/mtproto-proxy \
-    https://github.com/TelegramMessenger/MTProxy/releases/download/v1.4.14/mtproto-proxy-1.4.14-linux-amd64 && \
+# Скачиваем MTProto-прокси через официальный репозиторий
+# Используем архив от alexbers (проверенный)
+RUN wget -q -O /usr/local/bin/mtproto-proxy https://github.com/alexbers/mtprotoproxy/releases/download/v1.0.9/mtproto-proxy-linux-amd64 && \
     chmod +x /usr/local/bin/mtproto-proxy
 
 EXPOSE 8888
