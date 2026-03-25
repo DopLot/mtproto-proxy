@@ -1,17 +1,7 @@
-FROM python:3.11-slim
+FROM telegrammessenger/mtproxy:latest
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    wget \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# Укажите порт
+EXPOSE 8888
 
-RUN git clone https://github.com/alexbers/mtprotoproxy.git /app
-
-WORKDIR /app
-
-RUN pip install -r requirements.txt
-
-COPY config.py /app/config.py
-
-CMD ["python", "mtprotoproxy.py"]
+# Запуск прокси
+CMD ["-u", "nobody", "-p", "8888", "-H", "443", "--secret", "0123456789abcdef0123456789abcdef"]
